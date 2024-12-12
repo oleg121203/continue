@@ -24,7 +24,7 @@ wheels/
 venv/
 ENV/
 
-# IDE
+# IDE and Editor files
 .vscode/
 .idea/
 *.swp
