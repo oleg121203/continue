@@ -1,0 +1,12 @@
+.cache
+.cache
+.cache
+my-chat-extension/codeguru/
+__pycache__/
+*.pyc
+.cache/
+venv/
+.env
+my-chat-extension/codeguru/
+my-chat-extension/codeguru/
+my-chat-extension/codeguru/

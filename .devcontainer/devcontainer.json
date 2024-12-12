@@ -1,0 +1,113 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Python DevContainer with AI Integration",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/CODE",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y git && ./.devcontainer/setup.sh && npm install -g eslint@latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "esbenp.prettier-vscode",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "njpwerner.autodocstring",
+        "streetsidesoftware.code-spell-checker",
+        "ms-toolsai.jupyter",
+        "GitHub.copilot",
+        "Continue.continue",
+        "ms-azuretools.vscode-docker",
+        "ritwickdey.LiveServer",
+        "dbaeumer.vscode-eslint",
+        "SonarSource.sonarlint-vscode",
+        "ms-vscode.makefile-tools",
+        "ms-vscode.vscode-speech",
+        "ms-vscode.vscode-speech-language-pack-ru-ru",
+        "ms-python.vscode-pylance",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.isort"
+      ],
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 3000,
+        "continue.workspace": {
+          "models": [
+            {
+              "title": "Qwen2.5 Coder 7B",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "apiBase": "http://172.17.0.1:11434",
+              "contextLength": 8192,
+              "completionOptions": {
+                "temperature": 0.7,
+                "maxTokens": 2048
+              }
+            },
+            {
+              "title": "DeepSeek Coder",
+              "provider": "ollama",
+              "model": "deepseek-coder:6.7b",
+              "apiBase": "http://172.17.0.1:11434",
+              "contextLength": 8192,
+              "completionOptions": {
+                "temperature": 0.7,
+                "maxTokens": 2048
+              }
+            }
+          ],
+          "embeddingsProvider": {
+            "provider": "ollama",
+            "model": "nomic-embed-text:latest",
+            "apiBase": "http://172.17.0.1:11434"
+          }
+        },
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.organizeImports": true
+        },
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "html",
+          "vue"
+        ],
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.formatting.provider": "black",
+        "python.sortImports.args": ["--profile", "black"]
+      }
+    }
+  },
+  "forwardPorts": [11435, 8080, 65432, 3000],
+  "remoteEnv": {
+    "LAMMA_HOST": "http://172.17.0.1:11435",
+    "CONTINUE_PORT": "65432",
+    "OLLAMA_HOST": "http://172.17.0.1:11434"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "containerEnv": {
+    "PYTHONUNBUFFERED": "1",
+    "NODE_ENV": "development"
+  },
+  "mounts": [
+    "type=bind,source=/home/dev/.ssh,target=/home/vscode/.ssh,consistency=cached",
+    "type=bind,source=${localWorkspaceFolder}/.devcontainer/continue,target=/home/vscode/.continue,consistency=cached",
+    "type=volume,source=continue-cache,target=/home/vscode/.cache/continue"
+  ]
+}

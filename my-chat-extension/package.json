@@ -1,0 +1,36 @@
+{
+    "name": "my-chat-extension",
+    "displayName": "VS Code Chat Extension",
+    "description": "A simple chat extension for VS Code",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": ["Other"],
+    "main": "./out/extension.js",
+    "scripts": {
+        "start": "npm run watch",
+        "watch": "tsc -watch -p ./",
+        "compile": "tsc -p ./",
+        "vscode:prepublish": "npm run compile",
+        "clean": "rimraf out/",
+        "prebuild": "npm run clean",
+        "build": "tsc -p ./",
+        "pretest": "npm run build"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.80.0",
+        "@types/node": "^16.x",
+        "typescript": "^5.3.3",
+        "rimraf": "^5.0.5"
+    },
+    "activationEvents": ["onStartupFinished"],
+    "contributes": {
+        "commands": [{
+            "command": "myChatExtension.openChat",
+            "title": "Open Chat",
+            "category": "Chat"
+        }]
+    },
+    "license": "MIT"
+}

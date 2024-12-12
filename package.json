@@ -1,0 +1,40 @@
+{
+    "name": "my-chat-extension",
+    "displayName": "My Chat Extension",
+    "description": "VS Code Chat Extension",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/my-chat-extension"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "myChatExtension.openChat",
+                "title": "Open Chat"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile"
+    },
+    "devDependencies": {
+        "@types/node": "^18.19.68",
+        "@types/vscode": "^1.96.0",
+        "@vscode/test-electron": "^2.4.1",
+        "eslint": "^9.16.0",
+        "typescript": "^5.3.3"
+    },
+    "license": "MIT"
+}
