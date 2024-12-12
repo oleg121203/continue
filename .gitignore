@@ -30,8 +30,14 @@ ENV/
 *.swp
 *.swo
 
+# Development
+.devcontainer/
+!.devcontainer/devcontainer.json
+!.devcontainer/Dockerfile
+!.devcontainer/setup.sh
+
 # Project specific
-.env
+my-chat-extension/
 .cache/
 my-chat-extension/codeguru/
 .devcontainer/# Code Citations.md
